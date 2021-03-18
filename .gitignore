@@ -1,18 +1,42 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+# Directories
+temp/
+TEMP/
+tmp/
+cache/
 
-# Other files and folders
-.settings/
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+# specific
+.gitignore
+.htaccess
+.htpasswd.mittwald
+# public/wp-config.php
+public/wp-config-local.php
+public/wp-content/cache/
+cache/
+log/
+logs/
+*.cache
+*.lock
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+
+# Node artifact files
+node_modules/
+# dist/   WordPress JS Fehler werden verursacht bei ignore
+# Large files
+*.zip
+*.mp4
+*.mp3
+*.mov
+*.ogg
+*.dmg
+*.iso
+*.pkg
+*.rar
+*.tiff
+*.avi
+*.flv
+*.wmv
+.DS_Store
+*.jar
+*.log
+*.xip
