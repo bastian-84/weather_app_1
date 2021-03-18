@@ -6,21 +6,21 @@ const api = {
 
 function App() {
   const [query, setQuery] = useState('');
-  const [weather, setWeather] = useState('');
+  const [weather, setWeather] = useState({});
 
-  const search = (paramEvt) => {
-    if(paramEvt.key === "Enter"){
+  const search = evt => {
+    if(evt.key === "Enter"){
       fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
       .then(res => res.json())
       .then(result => {
         setWeather(result);
         setQuery('');
-        console.log(weather);
+        console.log(result);
       });
     }
   }
 
-  const dateBuilder = (paramD) => {
+  const dateBuilder = (d) => {
     let months = [
       'Januar',
       'Februar',
@@ -45,17 +45,17 @@ function App() {
       'Sonntag'
     ];
 
-    let day = days[paramD.getDay()];
-    let date = paramD.getDate();
-    let month = months[paramD.getMonth()];
-    let year = paramD.getFullYear();
+    let day = days[d.getDay()];
+    let date = d.getDate();
+    let month = months[d.getMonth()];
+    let year = d.getFullYear();
 
     /* return '${day} ${date} ${month} ${year}'; */
-    return `${day} ${date} ${month} ${year}`;
+    return `${day} ${date} ${month} ${year}`
   }
 
   return (
-    <div className="app">
+    <div className={(typeof weather.main != "undefined") ? ((weather.main.temp > 16) ? 'app warm' : 'app') : 'app'}>
       {/* Pictures from pixabay */}
       <main>
         <div className='search-box'>
@@ -63,7 +63,7 @@ function App() {
             type='text'
             className='search-bar'
             placeholder='Search...'
-            onChange={ (paramE) => setQuery(paramE.target.value) }
+            onChange={e => setQuery(e.target.value)}
             value={query}
             onKeyPress={search}
           />
